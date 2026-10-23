@@ -254,6 +254,8 @@ class Engine:
                 f"{params.width}x{params.height} is too large for this Mac's memory. "
                 f"Keep it under about {limit * limit / 1e6:.1f} megapixels."
             )
+        if spec.fixed_steps and params.steps not in (None, spec.default_steps):
+            raise ValueError(f"{spec.name} uses a fixed {spec.default_steps}-step sampling schedule")
         params.steps = max(1, min(params.steps or spec.default_steps, 100))
         if params.seed is None or params.seed < 0:
             params.seed = random.randint(0, 2**31 - 1)

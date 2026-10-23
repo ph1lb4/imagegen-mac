@@ -27,6 +27,7 @@ struct ModelInfo: Codable, Identifiable, Equatable {
     var recommendedMemoryGb: Int
     var capabilities: [String]
     var defaultSteps: Int
+    var fixedSteps: Bool?
     var maxReferenceImages: Int
     var aspectRatios: [String]
     var installed: Bool

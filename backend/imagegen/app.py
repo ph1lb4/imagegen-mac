@@ -53,6 +53,7 @@ def _model_info(spec: catalog.ModelSpec) -> dict:
         "recommended_memory_gb": spec.recommended_memory_gb,
         "capabilities": list(spec.capabilities),
         "default_steps": spec.default_steps,
+        "fixed_steps": spec.fixed_steps,
         "max_reference_images": spec.max_reference_images,
         "aspect_ratios": list(spec.aspect_ratios),
         "installed": downloader.is_installed(spec),

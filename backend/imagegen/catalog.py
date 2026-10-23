@@ -18,6 +18,8 @@ class ModelSpec:
     capabilities: tuple[str, ...]
     default_steps: int = 40
     max_reference_images: int = 0
+    # Checkpoints with a saved sampling schedule do not support custom step counts.
+    fixed_steps: bool = False
     # Native resolution presets per aspect ratio (width, height).
     aspect_ratios: dict[str, tuple[int, int]] = field(default_factory=dict)
     # Files matching these prefixes are not needed to run the model.
@@ -49,6 +51,33 @@ MODELS: dict[str, ModelSpec] = {
             recommended_memory_gb=48,
             capabilities=("text-to-image", "image-editing", "rgba"),
             default_steps=40,
+            max_reference_images=10,
+            aspect_ratios={
+                "1:1": (2048, 2048),
+                "4:3": (2400, 1792),
+                "3:4": (1792, 2400),
+                "3:2": (2528, 1696),
+                "2:3": (1696, 2528),
+                "16:9": (2752, 1536),
+                "9:16": (1536, 2752),
+            },
+            skip_prefixes=("assets/",),
+        ),
+        ModelSpec(
+            id="qwen-image-2.1-turbo",
+            name="Qwen-Image 2.1 Turbo",
+            repo="Qwen/Qwen-Image-2.1-Turbo",
+            description=(
+                "Accelerated text-to-image and image editing with a fixed 8-step schedule. "
+                "Strong typography, native transparent (RGBA) output and up to 10 reference images."
+            ),
+            pipeline="QwenImage21Pipeline",
+            license="Qwen Research License Agreement (non-commercial)",
+            size_gb=32.5,
+            recommended_memory_gb=48,
+            capabilities=("text-to-image", "image-editing", "rgba"),
+            default_steps=8,
+            fixed_steps=True,
             max_reference_images=10,
             aspect_ratios={
                 "1:1": (2048, 2048),

@@ -5,7 +5,7 @@ description = "Local image generation engine with REST API and MCP server"
 requires-python = ">=3.12,<3.14"
 dependencies = [
     "torch>=2.8",
-    "diffusers @ git+https://github.com/huggingface/diffusers@8315c5d6dc867349bf72d54eca59c83edf3b0024",
+    "diffusers @ git+https://github.com/huggingface/diffusers@da1d3829cf08d4f329b526d89e17cc035c049d8d",
     "transformers>=5.17",
     "accelerate>=1.10",
     "pillow>=11",

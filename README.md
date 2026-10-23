@@ -91,7 +91,9 @@ open build/ImageGen.app
 Copy `build/ImageGen.app` to `/Applications` if you like. On first start the app sets up its Python
 environment with the bundled `uv` (a few minutes, about 1 GB). Later starts take seconds.
 
-Then pick Qwen-Image 2.1 and hit download. It's about 33 GB, and the download resumes if it gets interrupted.
+Then pick Qwen-Image 2.1 or Qwen-Image 2.1 Turbo and hit download. Each is about 33 GB, and the download resumes if it gets interrupted. They are separate downloads; keeping both needs about 66 GB of disk space.
+
+[Qwen-Image 2.1 Turbo](https://huggingface.co/Qwen/Qwen-Image-2.1-Turbo) supports text-to-image, image editing and transparent output with a fixed 8-step sampling schedule. Custom step counts are unavailable for Turbo; quality presets still control resolution. The same memory guards apply. The pinned Diffusers revision includes support for the checkpoint's saved sampling schedule (upstream PR #14950).
 
 ## Use it from Claude Code (MCP)
 

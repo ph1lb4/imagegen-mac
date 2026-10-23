@@ -156,8 +156,13 @@ private struct ControlsPanel: View {
 
                     DisclosureGroup("Advanced", isExpanded: $showAdvanced) {
                         VStack(alignment: .leading, spacing: 12) {
-                            Toggle("Custom steps", isOn: $model.useCustomSteps)
-                            if model.useCustomSteps {
+                            if model.currentModel?.fixedSteps == true {
+                                Text("This model uses a fixed \(model.currentModel?.defaultSteps ?? 8)-step sampling schedule.")
+                                    .font(.caption).foregroundStyle(.secondary)
+                            } else {
+                                Toggle("Custom steps", isOn: $model.useCustomSteps)
+                            }
+                            if model.useCustomSteps && model.currentModel?.fixedSteps != true {
                                 HStack {
                                     Slider(value: Binding(get: { Double(model.steps) }, set: { model.steps = Int($0) }), in: 4...80, step: 1)
                                     Text("\(model.steps)").monospacedDigit().frame(width: 28, alignment: .trailing)

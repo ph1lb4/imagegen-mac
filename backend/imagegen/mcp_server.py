@@ -112,7 +112,7 @@ def build_mcp(engine: Engine) -> MCPServer:
             quality: "draft" (~512px, fastest), "standard" (~1024px) or "high" (up to ~2048px, slowest; capped to what this Mac's memory allows).
             transparent: Produce an RGBA image with a transparent background (stickers, icons, cutouts).
             negative_prompt: Things to avoid. Only used when combined with a cfg scale, usually leave empty.
-            steps: Denoising steps. Defaults to the model's recommended value (40). Lower is faster.
+            steps: Denoising steps. Defaults to the model's recommended value (40 for base, fixed 8 for Turbo).
             seed: Fix for reproducible results. Random when omitted.
             width: Exact width in pixels (multiple of 32). Overrides aspect_ratio and quality together with height.
             height: Exact height in pixels (multiple of 32).
@@ -153,7 +153,7 @@ def build_mcp(engine: Engine) -> MCPServer:
             instruction: What to change.
             image_paths: One or more absolute paths to input images (up to 10), or names of earlier results.
             quality: "draft", "standard" or "high".
-            steps: Denoising steps, defaults to the model's recommended value.
+            steps: Denoising steps, defaults to the model's recommended value; Turbo requires 8.
             seed: Fix for reproducible results.
             output_path: Optional file or folder path to also save the result to.
             return_preview: Include a downscaled preview image in the result.
@@ -187,6 +187,8 @@ def build_mcp(engine: Engine) -> MCPServer:
                     "id": spec.id,
                     "name": spec.name,
                     "capabilities": spec.capabilities,
+                    "default_steps": spec.default_steps,
+                    "fixed_steps": spec.fixed_steps,
                     "downloaded": downloader.is_installed(spec),
                     "loaded": engine.model_id == spec.id and engine.status == "ready",
                     "aspect_ratios": list(spec.aspect_ratios),

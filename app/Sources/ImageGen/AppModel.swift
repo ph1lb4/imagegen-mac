@@ -225,7 +225,7 @@ final class AppModel {
             negativePrompt: negativePrompt.isEmpty ? nil : negativePrompt,
             aspectRatio: aspectRatio,
             resolution: quality.resolution(max: engine.maxResolution),
-            steps: useCustomSteps ? steps : nil,
+            steps: useCustomSteps && currentModel?.fixedSteps != true ? steps : nil,
             seed: Int(seedText),
             cfgScale: negativePrompt.isEmpty ? 1.0 : cfgScale,
             transparent: transparent,
