@@ -8,7 +8,7 @@ dependencies = [
     "diffusers @ git+https://github.com/huggingface/diffusers@da1d3829cf08d4f329b526d89e17cc035c049d8d",
     "transformers>=5.17",
     "accelerate>=1.10",
-    "pillow>=11",
+    "pillow>=13.0.0",
     "safetensors>=0.6",
     "huggingface-hub>=1.0",
     "httpx>=0.28",
